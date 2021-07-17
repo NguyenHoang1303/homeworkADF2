@@ -16,7 +16,6 @@ public class Maint2012 {
         String urlTitle = article.getUrl();
         List<String> listUrlDetail = article.getListUrlVnExpress(urlTitle);
         List<Article> listThread = new ArrayList<>();
-
         for (String urlDetail : listUrlDetail) {
             Article at1 = new Article(urlDetail);
             listThread.add(at1);
@@ -29,7 +28,6 @@ public class Maint2012 {
                 e.printStackTrace();
             }
         }
-
         Boolean isValid;
         ArticleModel articleModel = new ArticleModel();
         Article articleValid;
