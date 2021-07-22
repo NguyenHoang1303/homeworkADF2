@@ -18,8 +18,8 @@ public class Maint2012 {
         List<Article> listThread = new ArrayList<>();
         for (String urlDetail : listUrlDetail) {
             Article at1 = new Article(urlDetail);
-            listThread.add(at1);
             at1.start();
+            listThread.add(at1);
         }
         for (Thread thread : listThread) {
             try {
