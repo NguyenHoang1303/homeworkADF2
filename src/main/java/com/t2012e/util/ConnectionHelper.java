@@ -1,4 +1,4 @@
-package com.t2012e.lab1.util;
+package com.t2012e.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

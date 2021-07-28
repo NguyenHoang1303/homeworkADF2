@@ -1,7 +1,7 @@
 package com.t2012e.lab1.model;
 
 import com.t2012e.lab1.entity.Article;
-import com.t2012e.lab1.util.ConnectionHelper;
+import com.t2012e.util.ConnectionHelper;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
