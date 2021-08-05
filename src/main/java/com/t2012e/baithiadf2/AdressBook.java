@@ -36,7 +36,6 @@ public class AdressBook {
 
     public void displayContact(){
         for (String key: list.keySet()) {
-            Contact contact = list.get(key);
             System.out.println("Address Book");
             System.out.println("Contact Name    |    phone    ");
             System.out.printf("%s   |   %s",list.get(key).getName(), list.get(key).getPhone());
