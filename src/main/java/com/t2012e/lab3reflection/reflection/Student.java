@@ -5,8 +5,10 @@ import com.t2012e.lab3reflection.reflection.myannotion.Column;
 import com.t2012e.lab3reflection.reflection.myannotion.Id;
 import com.t2012e.lab3reflection.reflection.myannotion.Table;
 
+import java.io.Serializable;
+
 @Table(name = "sinhvien")
-public class Student {
+public class Student implements Serializable {
     @Id(autoIncrement = true)
     public String id;
     @Column(filedName = "tenSV", filedType = "VARCHAR(250)")

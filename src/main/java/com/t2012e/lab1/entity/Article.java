@@ -20,7 +20,6 @@ public class Article extends Thread {
     private LocalDate updateAt;
     private int status;
     private Article article;
-
     @Override
     public void run() {
         crawlData();

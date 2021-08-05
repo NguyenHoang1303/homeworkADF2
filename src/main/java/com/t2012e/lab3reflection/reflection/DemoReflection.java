@@ -1,6 +1,7 @@
 package com.t2012e.lab3reflection.reflection;
 
 
+import com.t2012e.lab3reflection.model.MasterModel;
 import com.t2012e.util.ConnectionHelper;
 import com.t2012e.lab3reflection.reflection.myannotion.Column;
 import com.t2012e.lab3reflection.reflection.myannotion.Id;
@@ -10,12 +11,17 @@ import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 public class DemoReflection {
-    public static void main(String[] args) throws SQLException, IllegalAccessException {
+
+    public static void main(String[] args) throws SQLException, IllegalAccessException, NoSuchMethodException {
         Student student = new Student("A001", "Nguyen");
-        migrateData(Student.class);
-        save(student);
+        MasterModel masterModel = new MasterModel();
+        masterModel.deleteByPrimarykey(student);
+        masterModel.findAll(Student.class);
+//        migrateData(Student.class);
+//        save(student);
     }
 
     public  static void migrateData(Class clazz) throws SQLException {
