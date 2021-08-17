@@ -57,37 +57,47 @@ public class EmployeeModel {
         return false;
     }
 
-    public boolean checkExistAccount(String account) throws SQLException {
-        Connection cnn = ConnectionHelper.getConnection();
-        if (cnn == null) {
-            throw new SQLException("không thể kết nối tới database!");
+    public boolean checkExistAccount(String account) {
+        Connection cnn = null;
+        try {
+            cnn = ConnectionHelper.getConnection();
+            if (cnn == null) {
+                throw new SQLException("không thể kết nối tới database!");
+            }
+            PreparedStatement pp = cnn.prepareStatement("select * from employees where taiKhoan = ? ");
+            pp.setString(1, account);
+            ResultSet rs = pp.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        PreparedStatement pp = cnn.prepareStatement("select * from employees where taiKhoan = ? ");
-        pp.setString(1, account);
-        ResultSet rs = pp.executeQuery();
-        return rs.next();
+        return false;
     }
 
-    public Employee login(String account, String password) throws SQLException {
-        Connection cnn = ConnectionHelper.getConnection();
-        if (cnn == null) {
-            throw new SQLException("không thể kết nối tới database!");
-        }
-        PreparedStatement pp = cnn.prepareStatement("select * from employees where taiKhoan = ? and matKhau = ?");
-        pp.setString(1, account);
-        pp.setString(2, password);
-        ResultSet rs = pp.executeQuery();
-        if (rs.next()){
-            String name = rs.getString("ten");
-            String diaChi = rs.getString("diaChi");
-            String email = rs.getString("email");
-            String taiKhoan = rs.getString("taiKhoan");
-            String matKhau = rs.getString("matKhau");
-            LocalDate ngayTao = HandlerTime.convertStringToDate(rs.getString("ngayTao"));
-            LocalDate ngayUpdate = HandlerTime.convertStringToDate(rs.getString("ngayUpdate"));
-            int trangThai = rs.getInt("trangThai");
-            Employee employee = new Employee(name, diaChi, email, taiKhoan, matKhau, ngayTao, ngayUpdate, trangThai);
-            return employee;
+    public Employee login(String account, String password) {
+        Connection cnn = null;
+        try {
+            cnn = ConnectionHelper.getConnection();
+            if (cnn == null) {
+                throw new SQLException("không thể kết nối tới database!");
+            }
+            PreparedStatement pp = cnn.prepareStatement("select * from employees where taiKhoan = ? and matKhau = ?");
+            pp.setString(1, account);
+            pp.setString(2, password);
+            ResultSet rs = pp.executeQuery();
+            if (rs.next()){
+                String name = rs.getString("ten");
+                String diaChi = rs.getString("diaChi");
+                String email = rs.getString("email");
+                String taiKhoan = rs.getString("taiKhoan");
+                String matKhau = rs.getString("matKhau");
+                LocalDate ngayTao = HandlerTime.convertStringToDate(rs.getString("ngayTao"));
+                LocalDate ngayUpdate = HandlerTime.convertStringToDate(rs.getString("ngayUpdate"));
+                int trangThai = rs.getInt("trangThai");
+                return new Employee(name, diaChi, email, taiKhoan, matKhau, ngayTao, ngayUpdate, trangThai);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
     }

@@ -17,23 +17,18 @@ public class EmployeeController {
     }
 
     public void creatEmployee() {
-        String ten;
-        String diaChi;
-        String email;
-        String taiKhoan;
-        String matKhau;
         while (true) {
             System.out.println("Vui lòng nhập thông tin đăng ký.");
             System.out.println("Ten: ");
-            ten = scanner.nextLine();
+            String ten = scanner.nextLine();
             System.out.println("Địa chỉ: ");
-            diaChi = scanner.nextLine();
+            String diaChi = scanner.nextLine();
             System.out.println("Email: ");
-            email = scanner.nextLine();
+            String email = scanner.nextLine();
             System.out.println("Tài khoản: ");
-            taiKhoan = scanner.nextLine();
+            String taiKhoan = scanner.nextLine();
             System.out.println("Mật khẩu: ");
-            matKhau = scanner.nextLine();
+            String matKhau = scanner.nextLine();
             Employee employee = new Employee(ten, diaChi, email, taiKhoan, matKhau);
             if (employeeModel.register(employee)) {
                 System.out.println("Tạo tài khoản thành công!");
@@ -61,14 +56,12 @@ public class EmployeeController {
     }
 
     public void login() {
-        String taiKhoan;
-        String matKhau;
         int choice = 1;
         while (choice == 1) {
             System.out.println("Vui lòng nhập tài khoản:");
-            taiKhoan = scanner.nextLine();
+            String taiKhoan = scanner.nextLine();
             System.out.println("Vui lòng nhập mật khẩu");
-            matKhau = scanner.nextLine();
+            String matKhau = scanner.nextLine();
             try {
                 if (employeeModel.login(taiKhoan, matKhau) != null) {
                     Employee employee = employeeModel.login(taiKhoan, matKhau);

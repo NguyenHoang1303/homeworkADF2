@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class AdressBook {
 
-    private HashMap<String,Contact>  list = new HashMap<>();
+    private HashMap<String, Contact> list = new HashMap<>();
 
     public void addNewContact() {
         Scanner scanner = new Scanner(System.in);
@@ -13,32 +13,26 @@ public class AdressBook {
         String name = scanner.nextLine();
         System.out.println("plesea enter phone:");
         String phone = scanner.nextLine();
-        System.out.println("plesea enter id:");
-        String id = scanner.nextLine();
         Contact contact = new Contact(name, phone);
-        list.put(id,contact);
+        list.put(name, contact);
     }
 
-    public void findAContactByName(){
+    public void findAContactByName() {
         System.out.println("Plese enter name search:");
         Scanner scanner = new Scanner(System.in);
         String nameSearch = scanner.nextLine();
-        for (String key: list.keySet()) {
-            String name = list.get(key).getName();
-            if (name.equals(nameSearch)){
-                System.out.println("Address Book");
-                System.out.println("Contact Name    |    phone    ");
-                System.out.printf("%s   |   %s",list.get(key).getName(), list.get(key).getPhone());
-                System.out.println("\n");
-            }
-        }
+        Contact contact = list.get(nameSearch);
+        System.out.println("Address Book");
+        System.out.println("Contact Name    |    phone    ");
+        System.out.printf("%s   |   %s", contact.getName(), contact.getPhone());
+        System.out.println("\n");
     }
 
-    public void displayContact(){
-        for (String key: list.keySet()) {
+    public void displayContact() {
+        for (String key : list.keySet()) {
             System.out.println("Address Book");
             System.out.println("Contact Name    |    phone    ");
-            System.out.printf("%s   |   %s",list.get(key).getName(), list.get(key).getPhone());
+            System.out.printf("%s   |   %s", list.get(key).getName(), list.get(key).getPhone());
             System.out.println("\n");
         }
     }
