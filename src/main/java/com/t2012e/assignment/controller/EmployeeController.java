@@ -4,7 +4,6 @@ import com.t2012e.assignment.entity.Employee;
 import com.t2012e.assignment.model.EmployeeModel;
 import com.t2012e.assignment.util.PrintfEmployeeByFormat;
 
-import java.sql.SQLException;
 import java.util.Scanner;
 
 public class EmployeeController {
@@ -41,20 +40,6 @@ public class EmployeeController {
         }
     }
 
-    public void checkExistAccount() {
-        System.out.println("Vui lòng nhập tài khoản:");
-        String taiKhoan = scanner.nextLine();
-        try {
-            if (employeeModel.checkExistAccount(taiKhoan)) {
-                System.out.println("Tài khoản đã tồn tại");
-            } else {
-                System.out.println("Tài khoản không tồn tại");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void login() {
         int choice = 1;
         while (choice == 1) {
@@ -62,22 +47,18 @@ public class EmployeeController {
             String taiKhoan = scanner.nextLine();
             System.out.println("Vui lòng nhập mật khẩu");
             String matKhau = scanner.nextLine();
-            try {
-                if (employeeModel.login(taiKhoan, matKhau) != null) {
-                    Employee employee = employeeModel.login(taiKhoan, matKhau);
-                    PrintfEmployeeByFormat.printf();
-                    System.out.println(employee.toString());
-                    break;
-                } else {
-                    System.out.println("Vui lòng kiểm tra lại tài khoản hoặc mật khẩu");
-                    System.out.println("1. nhập lại thông tin!");
-                    System.out.println("2. thoát");
-                    System.out.println("Vui lòng chọn 1-2");
-                    choice = scanner.nextInt();
-                    scanner.nextLine();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (employeeModel.login(taiKhoan, matKhau) != null) {
+                Employee employee = employeeModel.login(taiKhoan, matKhau);
+                PrintfEmployeeByFormat.printf();
+                System.out.println(employee.toString());
+                break;
+            } else {
+                System.out.println("Vui lòng kiểm tra lại tài khoản hoặc mật khẩu");
+                System.out.println("1. nhập lại thông tin!");
+                System.out.println("2. thoát");
+                System.out.println("Vui lòng chọn 1-2");
+                choice = scanner.nextInt();
+                scanner.nextLine();
             }
         }
 

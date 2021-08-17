@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class EmployeeModel {
-//    {
+    //    {
 //        register(new Employee("nguyen","Hung Yen", "nguyen@gmail.com", "nguyenhy", "123"));
 //        register(new Employee("nguyen1","Hung Yen1", "nguyen1@gmail.com", "nguyenhy1", "123"));
 //        register(new Employee("nguyen2","Hung Yen2", "nguyen2@gmail.com", "nguyenhy2", "123"));
@@ -23,12 +23,12 @@ public class EmployeeModel {
 //        register(new Employee("nguyen8","Hung Yen8", "nguyen7@gmail.com", "nguyenhy8", "123"));
 //        register(new Employee("nguyen9","Hung Yen9", "nguyen8@gmail.com", "nguyenhy9", "123"));
 //    }
-    public boolean register(Employee employee){
+    public boolean register(Employee employee) {
         try {
-            if (checkExistAccount(employee.getTaiKhoan())){
+            if (checkExistAccount(employee.getTaiKhoan())) {
                 System.out.println("Tài khoản đã tồn tại");
                 return false;
-            }else {
+            } else {
                 Connection cnn = ConnectionHelper.getConnection();
                 if (cnn == null) {
                     System.err.println("không thể kết nối tới database");
@@ -58,9 +58,8 @@ public class EmployeeModel {
     }
 
     public boolean checkExistAccount(String account) {
-        Connection cnn = null;
         try {
-            cnn = ConnectionHelper.getConnection();
+            Connection cnn = ConnectionHelper.getConnection();
             if (cnn == null) {
                 throw new SQLException("không thể kết nối tới database!");
             }
@@ -75,9 +74,8 @@ public class EmployeeModel {
     }
 
     public Employee login(String account, String password) {
-        Connection cnn = null;
         try {
-            cnn = ConnectionHelper.getConnection();
+            Connection cnn = ConnectionHelper.getConnection();
             if (cnn == null) {
                 throw new SQLException("không thể kết nối tới database!");
             }
@@ -85,7 +83,7 @@ public class EmployeeModel {
             pp.setString(1, account);
             pp.setString(2, password);
             ResultSet rs = pp.executeQuery();
-            if (rs.next()){
+            if (rs.next()) {
                 String name = rs.getString("ten");
                 String diaChi = rs.getString("diaChi");
                 String email = rs.getString("email");
