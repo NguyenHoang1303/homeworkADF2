@@ -2,7 +2,6 @@ package com.t2012e.assignment.controller;
 
 import com.t2012e.assignment.entity.Employee;
 import com.t2012e.assignment.model.EmployeeModel;
-import com.t2012e.assignment.util.PrintfEmployeeByFormat;
 
 import java.util.Scanner;
 
@@ -31,7 +30,7 @@ public class EmployeeController {
             Employee employee = new Employee(ten, diaChi, email, taiKhoan, matKhau);
             if (employeeModel.register(employee)) {
                 System.out.println("Tạo tài khoản thành công!");
-                PrintfEmployeeByFormat.printf();
+                printfEmployeeByFomart();
                 System.out.println(employee.toString());
                 break;
             } else {
@@ -49,7 +48,7 @@ public class EmployeeController {
             String matKhau = scanner.nextLine();
             if (employeeModel.login(taiKhoan, matKhau) != null) {
                 Employee employee = employeeModel.login(taiKhoan, matKhau);
-                PrintfEmployeeByFormat.printf();
+                printfEmployeeByFomart();
                 System.out.println(employee.toString());
                 break;
             } else {
@@ -61,6 +60,18 @@ public class EmployeeController {
                 scanner.nextLine();
             }
         }
+    }
 
+    public void printfEmployeeByFomart(){
+        System.out.printf("%5s%10s%5s | %5s%10s%5s | %5s%10s%18s | %5s%10s%15s | %5s%10s%5s | %5s%10s%5s | %5s%10s%5s | %5s%5s%5s \n",
+                "", "ten", "",
+                "", "diaChi", "",
+                "", "email", "",
+                "", "taiKhoan", "",
+                "", "matKhau", "",
+                "", "ngayTao", "",
+                "", "ngayUpdate", "",
+                "", "TrangThai", "");
+        System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
     }
 }
